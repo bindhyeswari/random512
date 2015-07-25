@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+        body {
+            /* YOU DONT NEED THIS */
+            font: 300 1em 'Helvetica Neue';
+        }
+
+        /* hide all tab content by default */
+        ul.tabcontent > li.content {
+            display: none;
+        }
+
+        ul.tabheadings > li.tab:hover {
+            background-color: #aaa;
+            cursor: pointer;
+            transition: background-color 500ms ease;
+        }
+
+        ul.tabcontent > li.content.active {
+            display: block;
+        }
+
+        section.tabs {
+            border: 1px solid #eee;
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="tabs">
+        <ul class="tabheadings">
+            <li class="tab">UI Developer</li>
+            <li class="tab">Back end Developer</li>
+            <li class="tab">Data Analytics</li>
+        </ul>
+        <ul class="tabcontent">
+            <li class="content active">UI Developer: Responsible for front end engineering</li>
+            <li class="content">Back end Developer: Responsible for Spring MVC development and Hibernate</li>
+            <li class="content">Data Analytics: Responsible MATLAB and other information</li>
+        </ul>
+    </section>
+
+    <script>
+        // Steps
+
+        document.addEventListener('DOMContentLoaded', function () {
+            function initTabs(element) {
+                var ul = element.querySelector('ul.tabheadings');
+                var content_ul = element.querySelector('ul.tabcontent');
+                ul.addEventListener('click', function (event) {
+                    var child_index = Array.prototype.indexOf.call(this.children, event.target);
+                    content_ul.querySelector('li.content.active').classList.remove('active');
+                    content_ul.querySelectorAll('li.content')[child_index].classList.add('active');
+                });
+            }
+            initTabs(document.querySelector('section.tabs'));
+        });
+
+    </script>
+
+
+</body>
+</html>

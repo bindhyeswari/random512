@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="jquery.js"></script>
+    <title>Deferred</title>
+
+    <script>
+        $(function () {
+
+
+            var d = $.Deferred();
+            ['nodejs', 'angularjs', 'iot'].reduce(function (a, b) {
+
+                // return a deferred object that returns a promise from the success callback
+
+                return a.then(function (data) {
+                    console.log(data);
+                    return $.getJSON('https://api.github.com/search/repositories?q=' + b);
+                });
+            }, d);
+            d.resolve();
+        });
+    </script>
+</head>
+<body>
+    <h1>jQuery Test 7</h1>
+</body>
+</html>
